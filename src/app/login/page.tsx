@@ -11,10 +11,6 @@ import { ResetIcon } from '@radix-ui/react-icons';
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/database/mongoClient';
 
-export async function GET() {
-    const con = await connectToDatabase();
-    return new NextResponse('connected to database');
-}
 export default function LoginPage(){
 
     const formSchema = z.object({
@@ -38,19 +34,6 @@ export default function LoginPage(){
 
     const handleSubmit = async (values: z.infer<typeof formSchema>) => {
         console.log(values);
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
-
-        if (response.ok) {
-            console.log('Login successful');
-        } else {
-            console.log('Invalid email or password');
-        }
     };
 
   return (

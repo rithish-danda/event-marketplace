@@ -1,5 +1,9 @@
-import React from 'react'
+"use client";
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @next/next/no-img-element */
+import React, { useState } from 'react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import {
     Carousel,
     CarouselApi,
@@ -8,10 +12,24 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
+  import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+  
 
 const events = () => {
+
+  const [count, setCount] = useState(0)
   return (
+
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
             <Link href={"/"}>
@@ -24,17 +42,131 @@ const events = () => {
             <Carousel>
             <CarouselPrevious/>
             <CarouselContent>
-                <CarouselItem className="md:basis-1/2 lg:basis-2/3">
-                    <label htmlFor=""><h2>Event 1</h2></label>
-                    <img src="https://source.unsplash.com/random/800x600" alt="Event 1" />
+                <CarouselItem >
+                    <div className='grid  text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-2 lg:text-left'>
+                        <img src="https://source.unsplash.com/random/400x300" alt="Event 1" />
+                        <div>
+                            <h1>Event 1</h1>
+                            <h2>Description about event 1</h2>
+                            <div>
+                              <div className='flex flex-row justify-evenly'>
+                                <Button onClick={() => {if(count>0){setCount((count) => count - 1)}}}>-</Button>
+                                <p>{count}</p>
+                                <Button onClick={() => {if(count<10){setCount((count) => count + 1)}}}>+</Button>
+                              </div>
+                              <Dialog>
+                              <DialogTrigger className="bg-primary text-primary-foreground shadow hover:bg-primary/90">Book Tickets</DialogTrigger>
+                                <DialogContent>
+                                  <DialogHeader>
+                                    <DialogTitle>Book Entry</DialogTitle>
+                                    <DialogDescription>
+                                      You are booking {count} entries for Event 1
+                                    </DialogDescription>
+                                  </DialogHeader>
+                                  <div className="grid gap-4 py-4">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                      <Label htmlFor="name" className="text-right">
+                                        Name
+                                      </Label>
+                                      <Input id="name" type='text' className="col-span-3" />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                      <Label htmlFor="email" className="text-right">
+                                        Email
+                                      </Label>
+                                      <Input id="email" type="email" className="col-span-3" />
+                                    </div>
+                                  </div>
+                                  <Button type="submit" onClick={() => window.location.reload()}>Make Payment</Button>
+                                </DialogContent>
+                              </Dialog>
+                            </div>
+                        </div>
+                    </div>
                 </CarouselItem>
-                <CarouselItem className="md:basis-1/2 lg:basis-2/3">
-                    <label htmlFor=""><h2>Event 2</h2></label>
-                    <img src="https://source.unsplash.com/random/800x600" alt="Event 1" />
+                <CarouselItem >
+                <div className='grid  text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-2 lg:text-left'>
+                        <img src="https://source.unsplash.com/random/400x300" alt="Event 1" />
+                        <div className=''>
+                            <h1>Event 2</h1>
+                            <h2>Description about event 2</h2>
+                            <div >
+                              <div className='flex flex-row justify-evenly'>
+                                <Button onClick={() => {if(count>0){setCount((count) => count - 1)}}}>-</Button>
+                                <p>{count}</p>
+                                <Button onClick={() => {if(count<10){setCount((count) => count + 1)}}}>+</Button>
+                              </div>
+                              <Dialog>
+                              <DialogTrigger className="bg-primary text-primary-foreground shadow hover:bg-primary/90">Book Tickets</DialogTrigger>
+                                <DialogContent>
+                                  <DialogHeader>
+                                    <DialogTitle>Book Entry</DialogTitle>
+                                    <DialogDescription>
+                                      You are booking {count} entries for Event 2
+                                    </DialogDescription>
+                                  </DialogHeader>
+                                  <div className="grid gap-4 py-4">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                      <Label htmlFor="name" className="text-right">
+                                        Name
+                                      </Label>
+                                      <Input id="name" type='text' className="col-span-3" />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                      <Label htmlFor="email" className="text-right">
+                                        Email
+                                      </Label>
+                                      <Input id="email" type="email" className="col-span-3" />
+                                    </div>
+                                  </div>
+                                  <Button type="submit" >Make Payment</Button>
+                                </DialogContent>
+                              </Dialog>
+                            </div>
+                        </div>
+                    </div>
                 </CarouselItem>
-                <CarouselItem className="md:basis-1/2 lg:basis-2/3">
-                    <label htmlFor=""><h2>Event 3</h2></label>
-                    <img src="https://source.unsplash.com/random/800x600" alt="Event 1" />
+                <CarouselItem >
+                <div className='grid  text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-2 lg:text-left'>
+                        <img src="https://source.unsplash.com/random/400x300" alt="Event 1" />
+                        <div>
+                            <h1>Event 3</h1>
+                            <h2>Description about event 3</h2>
+                            <div>
+                              <div className='flex flex-row justify-evenly'>
+                                <Button onClick={() => {if(count>0){setCount((count) => count - 1)}}}>-</Button>
+                                <p>{count}</p>
+                                <Button onClick={() => {if(count<10){setCount((count) => count + 1)}}}>+</Button>
+                              </div>
+                              <Dialog>
+                                <DialogTrigger className="bg-primary text-primary-foreground shadow hover:bg-primary/90">Book Tickets</DialogTrigger>
+                                <DialogContent>
+                                  <DialogHeader>
+                                    <DialogTitle>Book Entry</DialogTitle>
+                                    <DialogDescription>
+                                      You are booking {count} entries for Event 3
+                                    </DialogDescription>
+                                  </DialogHeader>
+                                  <div className="grid gap-4 py-4">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                      <Label htmlFor="name" className="text-right">
+                                        Name
+                                      </Label>
+                                      <Input id="name" type='text' className="col-span-3" />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                      <Label htmlFor="email" className="text-right">
+                                        Email
+                                      </Label>
+                                      <Input id="email" type="email" className="col-span-3" />
+                                    </div>
+                                  </div>
+                                  <Button type="submit" onClick={() => window.location.reload()}>Make Payment</Button>
+                                </DialogContent>
+                              </Dialog>
+                            </div>
+                        </div>
+                    </div>
                 </CarouselItem>
             </CarouselContent>
             <CarouselNext/>
